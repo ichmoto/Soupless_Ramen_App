@@ -3,7 +3,8 @@
   <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
   <p>説明：<%= @post.sentence %></p>
   <p>ユーザーネーム：<%= @post.user.name %></p>
-   <% if @post.user == current_user %>
+  <p>Category：<%= @post.category %></p>
+  <% if @post.user == current_user %>
     <%= link_to "Delete", post_path(@post), method: :delete %>
   <% end %>
 </div>
