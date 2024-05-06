@@ -7,21 +7,23 @@
   <% if @post.user == current_user %>
     <%= link_to "Delete", post_path(@post), method: :delete %>
   <% end %>
-    <div id="star_<%= @post.id %>"></div>
-<script>
-$(document).on('turbolinks:load', function() {
-  let elem = document.querySelector('#star_<%= @post.id %>');
-  if (elem == null) return;
+</div>
 
-  elem.innerHTML = "";
-  let opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    score: "<%= @post.star %>",
-    readOnly: true,
-  };
-  raty(elem, opt);
-});
-</script>
+<div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% end %>
+  <% if @post_comment.user == current_user %>
+    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 </div>
