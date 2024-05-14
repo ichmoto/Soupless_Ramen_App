@@ -1,14 +1,3 @@
-<h1>全ユーザー一覧</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %> - <%= user.email %>
-    </li>
-    <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-  <% end %>
-</ul>
-
-<h1>全投稿一覧</h1>
 <% @posts.each do |posts| %>
   <div>
     <%= link_to post_path(posts.id) do %>
@@ -34,6 +23,6 @@
       };
       window.raty(elem, opt);
     </script>
-    <%= link_to 'Delete', admin_post_path(posts), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <%= link_to 'Delete', admin_posts_path(posts), method: :delete, data: { confirm: '本当に削除しますか？' } %>
   </div>
 <% end %>
