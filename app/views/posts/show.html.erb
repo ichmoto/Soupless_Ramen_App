@@ -37,6 +37,22 @@
     </script>
 
 <div>
+  <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorite_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to posts_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
+<div>
   <%= form_with model: [@post, @post_comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
