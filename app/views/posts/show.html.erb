@@ -45,7 +45,7 @@
     </p>
     <% else %>
     <p>
-      <%= link_to posts_path(@post), method: :post do %>
+      <%= link_to post_favorite_path(@post), method: :post do %>
         ♡<%= @post.favorites.count %> いいね
       <% end %>
     </p>
