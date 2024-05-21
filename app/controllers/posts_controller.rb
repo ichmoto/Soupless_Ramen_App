@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts = @posts.with_star(params[:star]) if params[:star].present?
 
     if params[:start_date].present? && params[:end_date].present?
       start_date = Date.parse(params[:start_date])

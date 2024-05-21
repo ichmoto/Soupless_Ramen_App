@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   validates :category, presence: true
+  scope :with_star, ->(star) { where('star >= ?', star) if star.present? }
 
   def get_image
     unless image.attached?

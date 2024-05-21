@@ -75,6 +75,13 @@
     <%= f.submit "絞り込み" %>
     <% end %>
   </div>
+  <div>
+    <%= form_with url: posts_path, method: :get, local: true do %>
+    <%= label_tag :star, "最低評価" %>
+    <%= select_tag :star, options_for_select((1..5).map { |r| [pluralize(r, 'star'), r] }, params[:star]), include_blank: true %>
+    <%= submit_tag "絞り込み" %>
+    <% end %>
+  </div>
   <% end %>
     <%= yield %>
   </body>
