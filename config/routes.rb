@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "home#top"
   get 'tagsearches/search', to: 'tagsearches#search'
+  get 'maps/index'
+  resources :maps, only: [:index]
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
