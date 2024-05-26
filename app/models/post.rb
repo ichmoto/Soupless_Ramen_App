@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_one :map, dependent: :destroy
   validates :category, presence: true
   scope :with_star, ->(star) { where('star >= ?', star) if star.present? }
 
