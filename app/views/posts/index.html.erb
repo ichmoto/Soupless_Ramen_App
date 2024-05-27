@@ -12,7 +12,7 @@
     <div id="show-star<%= posts.id %>"></div>
     <script>
     　$("#show-star<%= posts.id %>").empty();
-    　var elem = document.querySelector("#show-star<%= posts.id %>");
+    　var element = document.querySelector("#show-star<%= posts.id %>");
     　var opt = {
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
@@ -21,7 +21,7 @@
         size: 10,
         score: "<%= posts.star %>"
       };
-      window.raty(elem, opt);
+      window.raty(element, opt);
     </script>
   </div>
 

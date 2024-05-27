@@ -10,20 +10,21 @@
     <%= f.text_field :category,class: 'form-control post_category' %>
   </div>
 
-  <div class="form-group row" id="star">
+  <div class="form-group row">
     <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :star, id: :review_star %>
+    <%#= f.hidden_field :star, id: :review_star %>
+    <div id="create_star"></div>
 　</div>
   <script>
-　$('#star').empty();
-　let elem = document.querySelector("#star");
-　let opt = {
+　$('#create_star').empty();
+　let starElem = document.querySelector("#create_star");
+　let option = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     scoreName: "post[star]",
     half: true,
   };
-  raty(elem, opt);
+  raty(starElem, option);
   </script>
 <% end %>
