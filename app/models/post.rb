@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_one :map, dependent: :destroy
   validates :category, presence: true
   scope :with_star, ->(star) { where('star >= ?', star) if star.present? }
+  geocoded_by :address
+  after_validation :geocode
 
   def get_image
     unless image.attached?
