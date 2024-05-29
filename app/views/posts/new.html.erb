@@ -46,8 +46,8 @@
 
             <div id='map' class="margin-t-b-14"></div>
             <%= f.fields_for :map, @post.build_map do |map| %>
-            <%= map.hidden_field :latitude%>
-            <%= map.hidden_field :longitude%>
+            <%= map.hidden_field :latitude, id:"post_map_latitude" %>
+            <%= map.hidden_field :longitude, id:"post_map_longitude" %>
             <% end %>
             <style>
             #map {

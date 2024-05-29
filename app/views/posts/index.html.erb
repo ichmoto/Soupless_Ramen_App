@@ -24,6 +24,7 @@
       window.raty(element, opt);
     </script>
   </div>
+<% end %>
   <div id="map"></div>
   <style>
     #map {
@@ -46,14 +47,16 @@
 
     // マーカーを追加（Postの情報からマーカーを追加する）
     <% @posts.each do |post| %>
+    <% if post.map && post.map.latitude && post.map.longitude %>
       new google.maps.Marker({
-        position: {lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+        position: {lat: <%= post.map.latitude %>, lng: <%= post.map.longitude %>},
         map: map,
       });
     <% end %>
+    <% end %>
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=>AIzaSyAT-xYvfAMAJMsmbstonEH8t0tQhtIh7iY&callback=initMap"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT-xYvfAMAJMsmbstonEH8t0tQhtIh7iY&callback=initMap&callback=initMap" async defer></script>
 
 
-<% end %>
+
