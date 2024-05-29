@@ -1,6 +1,12 @@
 <h1>画像投稿フォーム</h1>
-<%= form_with model: @post do |f| %>
-  <h4>画像</h4>
+
+
+<div class="row">
+  <div class="col s12 m10 push-m1">
+    <div class="card">
+      <div class="card-content post-card">
+        <%= form_with(model:@post,local: true,class:"margin-30") do |f|%>
+          <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
   <h4>説明</h4>
   <%= f.text_area :sentence %>
@@ -27,55 +33,95 @@
   };
   raty(starElem, option);
   </script>
-<% end %>
+        <%#= render 'shared/error_messages',object: f.object %>
+          <div id="post_form" class="field">
+            <div class="input-field">
+              <input type="text" id="address" placeholder="地名、施設名などを入力するか、地図をクリックしてマーカーを立ててください">
+              <label>場所</label>
+              <a class="btn" onclick="codeAddress()">地図検索</a>
+              <a id="del" class="btn marker-delete right" onclick="deleteMarker()">
+              <i class="fas fa-map-marker-alt fas-2x" style="color:red"></i>削除
+              </a>
+            </div>
 
-<h2>gmap</h2>
+            <div id='map' class="margin-t-b-14"></div>
+            <%= f.fields_for :map, @post.build_map do |map| %>
+            <%= map.hidden_field :latitude%>
+            <%= map.hidden_field :longitude%>
+            <% end %>
+            <style>
+            #map {
+            height: 600px;
+            width: 600px;
+            }
+            </style>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<input id="address" type="textbox" value="GeekSalon">
-<input type="button" value="Encode" onclick="codeAddress()">
-
-<div id='map'></div>
-
-<style>
-#map {
-  height: 600px;
-  width: 600px;
-}
-</style>
-
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT-xYvfAMAJMsmbstonEH8t0tQhtIh7iY&callback=initMap&callback=initMap" async defer></script>
 <script>
+var marker
+var myLatLng
+var map_lat
+var map_lng
+var geocoder
+var map_result
 let map
 
-function initMap(){
-  geocoder = new google.maps.Geocoder()
+function initMap (){
+  myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
+  map_lat = document.getElementById('post_map_latitude')
+  map_lng = document.getElementById('post_map_longitude')
+  marker = new google.maps.Marker();
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7828, lng:-73.9653},
-    zoom: 12,
+  center: myLatLng,
+  zoom: 12
   });
 
-  marker = new google.maps.Marker({
-    position:  {lat: 40.7828, lng:-73.9653},
-    map: map
-  });
+google.maps.event.addListener(map, 'click', mylistener);
+
+     //クリックしたときの処理
+function mylistener(event){
+    marker.setPosition(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()));
+    marker.setMap(map);
+    console.log(event.latLng.lat(), event.latLng.lng());
+    map_lat.value = event.latLng.lat();
+    map_lng.value = event.latLng.lng();
+  }
 }
 
-let geocoder
+  function deleteMarker(){
+    marker.setMap(null);
+    map_lat.value = "";
+    map_lng.value = "";
+}
+
+//追加した関数
 
 function codeAddress(){
+  geocoder = new google.maps.Geocoder()
   let inputAddress = document.getElementById('address').value;
-
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+  geocoder.geocode( {
+    'address': inputAddress,
+     'region': 'jp'
+    }, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
+      map_result = results[0].geometry.location;
+      map_lat.value = map_result.lat();
+      map_lng.value = map_result.lng();
+      marker.setPosition(new google.maps.LatLng(map_result.lat(), map_result.lng()));
+      marker.setMap(map);
+      console.log(map_lat.value,map_lng.value);
     } else {
-      alert('該当する結果がありませんでした：' + status);
+      alert('該当する結果がありませんでした');
+      initMap();
     }
   });
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT-xYvfAMAJMsmbstonEH8t0tQhtIh7iY&callback=initMap" async defer></script>

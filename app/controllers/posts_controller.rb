@@ -9,7 +9,20 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.save
     redirect_to posts_path
+    @post = current_user.posts.build(post_params)
+    if @post.save
+      latitude = params[:post][:map][:latitude]
+      longitude = params[:post][:map][:longitude]
+      unless latitude.empty? && longitude.empty?
+        @map = @post.build_map(
+          latitude: latitude,
+          longitude: longitude
+        )
+        @map.save
+      end
+    end
   end
+
 
   def index
     @posts = Post.all
@@ -37,7 +50,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :sentence, :category, :star)
+    params.require(:post).permit(:image, :sentence, :category, :star, map_attributes: [:id, :latitude, :longitude])
   end
 
 end
