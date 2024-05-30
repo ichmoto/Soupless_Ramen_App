@@ -7,12 +7,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
     @post = current_user.posts.build(post_params)
     if @post.save
       latitude = params[:post][:map][:latitude]
       longitude = params[:post][:map][:longitude]
+      redirect_to posts_path
       unless latitude.empty? && longitude.empty?
         @map = @post.build_map(
           latitude: latitude,

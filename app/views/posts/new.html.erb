@@ -1,6 +1,5 @@
 <h1>画像投稿フォーム</h1>
 
-
 <div class="row">
   <div class="col s12 m10 push-m1">
     <div class="card">
@@ -33,11 +32,9 @@
   };
   raty(starElem, option);
   </script>
-        <%#= render 'shared/error_messages',object: f.object %>
           <div id="post_form" class="field">
             <div class="input-field">
               <input type="text" id="address" placeholder="地名、施設名などを入力するか、地図をクリックしてマーカーを立ててください">
-              <label>場所</label>
               <a class="btn" onclick="codeAddress()">地図検索</a>
               <a id="del" class="btn marker-delete right" onclick="deleteMarker()">
               <i class="fas fa-map-marker-alt fas-2x" style="color:red"></i>削除

@@ -58,31 +58,6 @@
       </li>
     <% end %>
   </header>
-
-  <% if user_signed_in? %>
-  <div class="search_form">
-    <%= form_with url: tagsearches_search_path, local: true,method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.submit "タグ検索" %>
-    <% end %>
-  </div>
-  <div>
-    <%= form_with url: posts_path, method: :get, local: true do |f| %>
-    <%= f.label :start_date, "開始日" %>
-    <%= f.date_field :start_date, value: params[:start_date] %>
-    <%= f.label :end_date, "終了日" %>
-    <%= f.date_field :end_date, value: params[:end_date] %>
-    <%= f.submit "絞り込み" %>
-    <% end %>
-  </div>
-  <div>
-    <%= form_with url: posts_path, method: :get, local: true do %>
-    <%= label_tag :star, "最低評価" %>
-    <%= select_tag :star, options_for_select((1..5).map { |r| [pluralize(r, 'star'), r] }, params[:star]), include_blank: true %>
-    <%= submit_tag "絞り込み" %>
-    <% end %>
-  </div>
-  <% end %>
     <%= yield %>
   </body>
 </html>
