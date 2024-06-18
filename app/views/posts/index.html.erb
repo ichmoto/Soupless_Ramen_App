@@ -26,7 +26,7 @@
 <% @posts.each do |posts| %>
   <div>
     <%= link_to post_path(posts.id) do %>
-      <%= image_tag posts.get_image %>
+      <%= image_tag posts.get_image.variant(resize: "300x300") %>
     <% end %>
     <p>投稿ユーザー画像：<%= image_tag posts.user.get_profile_image(100,100) %></p>
     <p>説明：<%= posts.sentence %></p>
@@ -64,7 +64,7 @@
     const mapElement = document.getElementById('map');
 
     const mapOptions = {
-      center: { lat: 35.6803997, lng: 139.7690174 },
+      center: { lat: 34.9851603, lng: 135.7584294 },
       zoom: 10
     };
 

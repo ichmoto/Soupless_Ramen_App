@@ -70,14 +70,14 @@ var map_result
 let map
 
 function initMap (){
-  myLatLng = {lat: 35.68090045006303, lng: 139.76690798417752}
+  myLatLng = {lat: 34.9851603, lng: 135.7584294}
   map_lat = document.getElementById('post_map_latitude')
   map_lng = document.getElementById('post_map_longitude')
   marker = new google.maps.Marker();
 
   map = new google.maps.Map(document.getElementById('map'), {
   center: myLatLng,
-  zoom: 12
+  zoom: 10
   });
 
 google.maps.event.addListener(map, 'click', mylistener);
