@@ -1,5 +1,12 @@
 <h1>画像投稿フォーム</h1>
-
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div class="row">
   <div class="col s12 m10 push-m1">
     <div class="card">
@@ -9,7 +16,6 @@
   <%= f.file_field :image, accept: "image/*" %>
   <h4>説明</h4>
   <%= f.text_area :sentence %>
-  <%= f.submit '投稿' %>
   <div class="form-group">
     <label>Category</label>
     <%= f.text_field :category,class: 'form-control post_category' %>
@@ -32,6 +38,7 @@
   };
   raty(starElem, option);
   </script>
+  <%= f.submit '投稿' %>
           <div id="post_form" class="field">
             <div class="input-field">
               <input type="text" id="address" placeholder="地名、施設名などを入力するか、地図をクリックしてマーカーを立ててください">

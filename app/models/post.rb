@@ -8,6 +8,9 @@ class Post < ApplicationRecord
   scope :with_star, ->(star) { where('star >= ?', star) if star.present? }
   geocoded_by :address
   after_validation :geocode
+  validates :image, presence: true
+  validates :sentence, presence: true
+  validates :category, presence: true
 
   def get_image
     unless image.attached?

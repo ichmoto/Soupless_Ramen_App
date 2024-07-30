@@ -4,13 +4,14 @@
     <tr>
       <td>
         <%= link_to post_path(post.id) do %>
-          <%= image_tag post.get_image %>
+          <%= image_tag post.get_image.variant(resize: "300x300") %>
         <% end %>
         <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) %></p>
         <p>説明：<%= post.sentence %></p>
         <p>ユーザーネーム：<%= post.user.name %></p>
         <p>Category：<%= post.category %></p>
         <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+        <p>投稿日時：<%= post.created_at %></p>
       </td>
     </tr>
     <% end %>

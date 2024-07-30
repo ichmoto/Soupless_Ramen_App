@@ -32,7 +32,9 @@
     <p>説明：<%= posts.sentence %></p>
     <p>ユーザーネーム：<%= posts.user.name %></p>
     <p>Category：<%= posts.category %></p>
+    <p>投稿日時：<%= posts.created_at %></p>
     <p><%= link_to "#{posts.post_comments.count} コメント", post_path(posts.id) %></p>
+
 
     <div id="show-star<%= posts.id %>"></div>
     <script>
