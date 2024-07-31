@@ -11,14 +11,14 @@ class PostsController < ApplicationController
     if @post.save
       latitude = params[:post][:map][:latitude]
       longitude = params[:post][:map][:longitude]
-    　unless latitude.empty? && longitude.empty?
-        @map = @post.build_map(
-          latitude: latitude,
-          longitude: longitude
+    unless latitude.empty? && longitude.empty?
+      @map = @post.build_map(
+        latitude: latitude,
+        longitude: longitude
         )
-        @map.save
-    　end
-    　  redirect_to posts_path
+      @map.save
+    end
+      redirect_to posts_path
     else
       render :new
     end
