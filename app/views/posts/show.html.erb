@@ -7,7 +7,7 @@
   <p>カテゴリー：<%= @post.category %></p>
   <p>投稿日時：<%= @post.created_at %></p>
   <% if @post.user == current_user %>
-    <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "Are you sure you want to delete this Post？" %>
+    <%= link_to "消去", post_path(@post), method: :delete, "data-confirm" => "Are you sure you want to delete this Post？" %>
   <% end %>
 </div>
 
