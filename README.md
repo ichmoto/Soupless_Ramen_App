@@ -12,15 +12,17 @@
 
 ​
 ### ターゲットユーザ
-- 新しく汁なしラーメンを開拓しようと思っている人
 - ラーメン屋に置いている汁なしラーメンを布教したい人
+- 新しく汁なしラーメンを開拓しようと思っている人
 
 ### 主な利用シーン
-- 汁なしラーメンを置いている店を探すとき
 - 自分が食べた汁なしラーメンの情報を投稿する時
+- 汁なしラーメンを置いている店を探すとき
 
 ## 設計書
-後ほど作成予定
+- ER図：https://app.diagrams.net/#G1y4VLMVwu-N6Asm-SkmWqnho__xVmbe1G#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1IgLHZbrQwq-sWBTnULgteYnK0R9Zj10HSiTAkWQRPaw/edit?gid=1243549839#gid=1243549839
+- 詳細設計：https://docs.google.com/spreadsheets/d/1uoSzimn7_HTIUoXXXgdGEa3CTqR2yQLx/edit?gid=549108681#gid=549108681
 
 ## 実装機能リスト
 https://docs.google.com/spreadsheets/d/13DTYq5QZseGqqnBqpNugf8mzun9SNrZjZpXT7FriB34/edit#gid=1091086188
@@ -31,6 +33,3 @@ https://docs.google.com/spreadsheets/d/13DTYq5QZseGqqnBqpNugf8mzun9SNrZjZpXT7Fri
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-使用検討中です。
